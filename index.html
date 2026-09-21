@@ -12,32 +12,45 @@
 
 <body>
 
-    <!-- =========================
-         NAVBAR
-    ========================== -->
+ <!-- =========================
+     NAVBAR
+========================== -->
 
-    <header class="navbar">
+<header class="navbar">
 
-        <a href="#" class="logo">
-            LUNÉA
-            <small>BEAUTY STUDIO</small>
-        </a>
+    <a href="#" class="logo">
+        LUNÉA
+        <small>BEAUTY STUDIO</small>
+    </a>
 
-        <nav class="nav-links">
-    <a href="#">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#locations">Locations</a>
-    <a href="#team">Team</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        onclick="toggleMobileMenu()"
+    >
+        ☰
+    </button>
 
-        <a href="#booking" class="book-button">
+    <nav class="nav-links" id="nav-links">
+        <a href="#">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#locations">Locations</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+        <a href="#booking" class="mobile-book-link">
             Book Appointment
         </a>
+    </nav>
 
-</header>
+    <a href="#booking" class="book-button">
+        Book Appointment
+    </a>
+
+</header>   
 
 <div class="floating-contact">
 
@@ -224,7 +237,6 @@
             </div>
 
         </section>
-</section>
 
         <!-- ABOUT -->
         <section class="about" id="about">
@@ -329,39 +341,66 @@ BEFORE & AFTER
 
     </div>
 
-    <div class="before-after-grid">
+   <div class="before-after-grid">
 
-        <article class="transformation-card">
+    <!-- Hair Transformation -->
+    <article class="transformation-card">
 
-            <div class="transformation-image transformation-one">
+        <div class="transformation-image transformation-one">
+
+            <div class="transformation-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80"
+                    alt="Hair before transformation"
+                >
                 <span>BEFORE</span>
+            </div>
+
+            <div class="transformation-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=700&q=80"
+                    alt="Styled hair after transformation"
+                >
                 <span>AFTER</span>
             </div>
 
-            <h3>Hair Transformation</h3>
+        </div>
 
-            <p>
-                A fresh look, a renewed feeling.
-            </p>
+        <h3>Hair Transformation</h3>
+        <p>A fresh look, a renewed feeling.</p>
 
-        </article>
+    </article>
 
-        <article class="transformation-card">
 
-            <div class="transformation-image transformation-two">
+    <!-- Beauty Details -->
+    <article class="transformation-card">
+
+        <div class="transformation-image transformation-two">
+
+            <div class="transformation-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=80"
+                    alt="Natural nails before manicure"
+                >
                 <span>BEFORE</span>
+            </div>
+
+            <div class="transformation-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=700&q=80"
+                    alt="Manicure after transformation"
+                >
                 <span>AFTER</span>
             </div>
 
-            <h3>Beauty Details</h3>
+        </div>
 
-            <p>
-                Thoughtful details, beautiful results.
-            </p>
+        <h3>Beauty Details</h3>
+        <p>Thoughtful details, beautiful results.</p>
 
-        </article>
+    </article>
 
-    </div>
+</div>
 
     <p class="demo-note">
         Demo images and content — customizable for your studio.
@@ -1105,6 +1144,32 @@ locationSelect.addEventListener("change", function() {
 
     locationInfo.hidden = false;
 
+});
+function toggleMobileMenu() {
+    const navbar = document.querySelector(".navbar");
+    const toggle = document.querySelector(".mobile-menu-toggle");
+
+    navbar.classList.toggle("menu-open");
+
+    const isOpen = navbar.classList.contains("menu-open");
+
+    toggle.setAttribute("aria-expanded", isOpen);
+    toggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+}
+
+// Close the mobile menu after selecting a link
+document.querySelectorAll("#nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        const navbar = document.querySelector(".navbar");
+        const toggle = document.querySelector(".mobile-menu-toggle");
+
+        navbar.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation menu");
+    });
 });
 
 </script>
